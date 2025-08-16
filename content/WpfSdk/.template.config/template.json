@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Bluehill",
+  "classifications": [ "Common", "WPF" ],
+  "identity": "Bluehill.WpfSdk",
+  "name": "SDK-style WPF Application",
+  "description": "A SDK-style project template for creating a WPF App",
+  "shortName": "wpfsdk",
+  "sourceName":"WpfSdk",
+  "preferNameDirectory": true,
+  "defaultName": "WpfApp1",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "constraints": {
+    "windows-only": {
+      "type": "os",
+      "args": "Windows"
+    }
+  },
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "net452",
+          "description": "Target net452",
+          "displayName": ".NET Framework 4.5.2"
+        },
+        {
+          "choice": "net46",
+          "description": "Target net46",
+          "displayName": ".NET Framework 4.6"
+        },
+        {
+          "choice": "net461",
+          "description": "Target net461",
+          "displayName": ".NET Framework 4.6.1"
+        },
+        {
+          "choice": "net462",
+          "description": "Target net462",
+          "displayName": ".NET Framework 4.6.2"
+        },
+        {
+          "choice": "net47",
+          "description": "Target net47",
+          "displayName": ".NET Framework 4.7"
+        },
+        {
+          "choice": "net471",
+          "description": "Target net471",
+          "displayName": ".NET Framework 4.7.1"
+        },
+        {
+          "choice": "net472",
+          "description": "Target net472",
+          "displayName": ".NET Framework 4.7.2"
+        },
+        {
+          "choice": "net48",
+          "description": "Target net48",
+          "displayName": ".NET Framework 4.8"
+        },
+        {
+          "choice": "net481",
+          "description": "Target net481",
+          "displayName": ".NET Framework 4.8.1"
+        }
+      ],
+      "replaces": "FrameworkParameter",
+      "defaultValue": "net472",
+      "displayName": "Framework"
+    },
+    "skipRestore": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "If specified, skips the automatic restore of the project on create.",
+      "defaultValue": "false",
+      "displayName": "Skip restore"
+    },
+    "HostIdentifier": {
+      "type": "bind",
+      "binding": "HostIdentifier"
+    }
+  },
+  "primaryOutputs": [
+    { "path": "WpfSdk.csproj" },
+    {
+      "condition": "(HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
+      "path": "MainWindow.xaml.cs"
+    },
+    {
+      "condition": "(HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
+      "path": "MainWindow.xaml"
+    }
+  ],
+  "sources": [
+    {
+      "exclude": [ "**/[Bb]in/**", "**/[Oo]bj/**", ".template.config/**/*", "**/*.filelist", "**/*.lock.json" ]
+    }
+  ],
+  "postActions": [
+    {
+      "id": "restore",
+      "condition": "(!skipRestore)",
+      "description": "Restore NuGet packages required by this project.",
+      "manualInstructions": [
+        { "text": "Run 'dotnet restore'" }
+      ],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "continueOnError": true
+    },
+    {
+      "id": "editor",
+      "condition": "(HostIdentifier != \"dotnetcli\" && HostIdentifier != \"dotnetcli-preview\")",
+      "description": "Opens MainWindow.xaml in the editor",
+      "manualInstructions": [ ],
+      "actionId": "84C0DA21-51C8-4541-9940-6CA19AF04EE6",
+      "args": {
+        "files": "1;2"
+      },
+      "continueOnError": true
+    }
+  ]
+}
