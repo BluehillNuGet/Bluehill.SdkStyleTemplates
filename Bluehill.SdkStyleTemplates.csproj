@@ -6,6 +6,7 @@
     <PackageId>Bluehill.SdkStyleTemplates</PackageId>
     <PackageVersion>1.0</PackageVersion>
     <Title>SDK-style templates for .NET Framework</Title>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>template;templates;bluehill</PackageTags>
     <PackageProjectUrl>https://bluehillnuget.github.io/Bluehill.SdkStyleTemplates/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BluehillNuGet/Bluehill.SdkStyleTemplates.git</RepositoryUrl>
